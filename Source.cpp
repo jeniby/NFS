@@ -4,83 +4,132 @@
 #include <iostream>
 #include "view.h"
 using namespace sf;
-class Player { // класс Игрока
+class Player { // РєР»Р°СЃСЃ РРіСЂРѕРєР°
 private:
 	float x, y;
 public:
-	float  w, h, dx = 0, dy = 0.000005, speed_g = 0,speed_v = 0.00006,n; //координаты игрока х и у, высота ширина, ускорение (по х и по у), сама скорость
-	int dir = 0; //направление (direction) движения игрока
-	String File; //файл с расширением
-	Image image;//сфмл изображение
-	Texture texture;//сфмл текстура
-	Sprite sprite;//сфмл спрайт
+	float  w, h, dx = 0.0, dy = 0.0, speed_g = 0.0,speed_v = 0.0006,n; //РєРѕРѕСЂРґРёРЅР°С‚С‹ РёРіСЂРѕРєР° С… Рё Сѓ, РІС‹СЃРѕС‚Р° С€РёСЂРёРЅР°, СѓСЃРєРѕСЂРµРЅРёРµ (РїРѕ С… Рё РїРѕ Сѓ), СЃР°РјР° СЃРєРѕСЂРѕСЃС‚СЊ
+	int dir = 0; //РЅР°РїСЂР°РІР»РµРЅРёРµ (direction) РґРІРёР¶РµРЅРёСЏ Рё
+	String File; //С„Р°Р№Р» СЃ СЂР°СЃС€РёСЂРµРЅРёРµРј
+	Image image;//СЃС„РјР» РёР·РѕР±СЂР°Р¶РµРЅРёРµ
+	Texture texture;//СЃС„РјР» С‚РµРєСЃС‚СѓСЂР°
+	Sprite sprite;//СЃС„РјР» СЃРїСЂР°Р№С‚
 
-	Player(String F, float X, float Y, float W, float H) {  //Конструктор с параметрами(формальными) для класса Player. При создании объекта класса мы будем задавать имя файла, координату Х и У, ширину и высоту
-		File = F;//имя файла+расширение
-		w = W; h = H;//высота и ширина
-		image.loadFromFile("Images/" + File);//запихиваем в image наше изображение вместо File мы передадим то, что пропишем при создании объекта. В нашем случае "hero.png" и получится запись идентичная 	image.loadFromFile("images/hero/png");
+	Player(String F, float X, float Y, float W, float H) {  //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё(С„РѕСЂРјР°Р»СЊРЅС‹РјРё) РґР»СЏ РєР»Р°СЃСЃР° Player. РџСЂРё СЃРѕР·РґР°РЅРёРё РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР° РјС‹ Р±СѓРґРµРј Р·Р°РґР°РІР°С‚СЊ РёРјСЏ С„Р°Р№Р»Р°, РєРѕРѕСЂРґРёРЅР°С‚Сѓ РҐ Рё РЈ, С€РёСЂРёРЅСѓ Рё РІС‹СЃРѕС‚Сѓ
+		File = F;//РёРјСЏ С„Р°Р№Р»Р°+СЂР°СЃС€РёСЂРµРЅРёРµ
+		w = W; h = H;//РІС‹СЃРѕС‚Р° Рё С€РёСЂРёРЅР°
+		image.loadFromFile("Images/" + File);//Р·Р°РїРёС…РёРІР°РµРј РІ image РЅР°С€Рµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РІРјРµСЃС‚Рѕ File РјС‹ РїРµСЂРµРґР°РґРёРј С‚Рѕ, С‡С‚Рѕ РїСЂРѕРїРёС€РµРј РїСЂРё СЃРѕР·РґР°РЅРёРё РѕР±СЉРµРєС‚Р°. Р’ РЅР°С€РµРј СЃР»СѓС‡Р°Рµ "hero.png" Рё РїРѕР»СѓС‡РёС‚СЃСЏ Р·Р°РїРёСЃСЊ РёРґРµРЅС‚РёС‡РЅР°СЏ 	image.loadFromFile("images/hero/png");
 		image.createMaskFromColor(Color(255, 0, 0));
-		texture.loadFromImage(image);//закидываем наше изображение в текстуру
-		sprite.setTexture(texture);//заливаем спрайт текстурой
-		x = X; y = Y;//координата появления спрайта
+		texture.loadFromImage(image);//Р·Р°РєРёРґС‹РІР°РµРј РЅР°С€Рµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РІ С‚РµРєСЃС‚СѓСЂСѓ
+		sprite.setTexture(texture);//Р·Р°Р»РёРІР°РµРј СЃРїСЂР°Р№С‚ С‚РµРєСЃС‚СѓСЂРѕР№
+		x = X; y = Y;//РєРѕРѕСЂРґРёРЅР°С‚Р° РїРѕСЏРІР»РµРЅРёСЏ СЃРїСЂР°Р№С‚Р°
+		sprite.setPosition(x, y);
+		
+		}
+	
+
+	FloatRect getRect() {
+	return FloatRect(x, y, w, h);
 	}
 
-
-
-	void update(float time) //функция "оживления" объекта класса. update - обновление. принимает в себя время SFML , вследствие чего работает бесконечно, давая персонажу движение.
+	void update(float time) //С„СѓРЅРєС†РёСЏ "РѕР¶РёРІР»РµРЅРёСЏ" РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР°. update - РѕР±РЅРѕРІР»РµРЅРёРµ. РїСЂРёРЅРёРјР°РµС‚ РІ СЃРµР±СЏ РІСЂРµРјСЏ SFML , РІСЃР»РµРґСЃС‚РІРёРµ С‡РµРіРѕ СЂР°Р±РѕС‚Р°РµС‚ Р±РµСЃРєРѕРЅРµС‡РЅРѕ, РґР°РІР°СЏ РїРµСЂСЃРѕРЅР°Р¶Сѓ РґРІРёР¶РµРЅРёРµ.
 	{
-		switch (dir)//реализуем поведение в зависимости от направления. (каждая цифра соответствует направлению)
-		{
-		case 0: dx = speed_g; x += dx*time; if (x > 405) x -= dx*time; break;
-		case 1: dx = -speed_g; x += dx*time; if (x < 20) x -= dx*time;break;//по иксу задаем отрицательную скорость, по игреку зануляем. получается, что персонаж идет только влево
-		case 2: dx = 0; if (dy < 0.11)  dy += 2 * speed_v; y += dy*time; n = 1; break;//по иксу задаем нулевое значение, по игреку положительное. получается, что персонаж идет только вниз
-		case 3: dx = 0; if (dy > -0.1) dy += -speed_v; y += dy*time; n = 1;break;//по иксу задаем нулевое значение, по игреку отрицательное. получается, что персонаж идет только вверх
-		case 4: n = n*0.9999; dx = 0; y += n*dy*time; break;
+		switch (dir)//СЂРµР°Р»РёР·СѓРµРј РїРѕРІРµРґРµРЅРёРµ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РЅР°РїСЂР°РІР»РµРЅРёСЏ. (РєР°Р¶РґР°СЏ С†РёС„СЂР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РЅР°РїСЂР°РІР»РµРЅРёСЋ)
+			{
+		case 0: dx = -5*speed_g*dy; x += dx*time; if (x > 405) x -= dx*time; break;
+		case 1: dx = 5*speed_g*dy; x += dx*time; if (x < 20) x -= dx*time;break;
+		case 2: dx = 0; if (dy < -0.001)  dy += 2 * speed_v; else dy = 0; y += dy*time; n = 1; break;
+		case 3: dx = 0; if (dy > -0.3) dy += -speed_v; y += dy*time; n = 1;break;
+		case 4: if (dy <=- 0.0001) n = n*0.9989; else dy = 0; dx = 0; y += n*dy*time;  break;
 			}
 
 			
-			sprite.setPosition(x, y); //выводим спрайт в позицию x y , посередине. бесконечно выводим в этой функции, иначе бы наш спрайт стоял на месте.
+			sprite.setPosition(x, y); //РІС‹РІРѕРґРёРј СЃРїСЂР°Р№С‚ РІ РїРѕР·РёС†РёСЋ x y . Р±РµСЃРєРѕРЅРµС‡РЅРѕ РІС‹РІРѕРґРёРј РІ СЌС‚РѕР№ С„СѓРЅРєС†РёРё, РёРЅР°С‡Рµ Р±С‹ РЅР°С€ СЃРїСЂР°Р№С‚ СЃС‚РѕСЏР» РЅР° РјРµСЃС‚Рµ.
 		
 	}
-	float getplayercoordinateX() {	//этим методом будем забирать координату Х	
+	float getplayercoordinateX() {	//СЌС‚РёРј РјРµС‚РѕРґРѕРј Р±СѓРґРµРј Р·Р°Р±РёСЂР°С‚СЊ РєРѕРѕСЂРґРёРЅР°С‚Сѓ РҐ	
 		return x;
 	}
-	float getplayercoordinateY() {	//этим методом будем забирать координату Y 	
+	float getplayercoordinateY() {	//СЌС‚РёРј РјРµС‚РѕРґРѕРј Р±СѓРґРµРј Р·Р°Р±РёСЂР°С‚СЊ РєРѕРѕСЂРґРёРЅР°С‚Сѓ Y 	
 		return y;
 	}
 };
 class Map {
 	public:
 		float x, y, w, h;
-		String File; //файл с расширением
-		Image image;//сфмл изображение
-		Texture texture;//сфмл текстура
-		Sprite sprite;//сфмл спрайт
-		Map(String F, float X, float Y, float W, float H) {  //Конструктор с параметрами(формальными) для класса Player. При создании объекта класса мы будем задавать имя файла, координату Х и У, ширину и высоту
-			File = F;//имя файла+расширение
-			w = W; h = H;//высота и ширина
-			image.loadFromFile("Images/" + File);//запихиваем в image наше изображение вместо File мы передадим то, что пропишем при создании объекта. В нашем случае "hero.png" и получится запись идентичная 	image.loadFromFile("images/hero/png");
-			texture.loadFromImage(image);//закидываем наше изображение в текстуру
-			sprite.setTexture(texture);//заливаем спрайт текстурой
-			x = X; y = Y;//координата появления спрайта
+		String File; //С„Р°Р№Р» СЃ СЂР°СЃС€РёСЂРµРЅРёРµРј
+		Image image;//СЃС„РјР» РёР·РѕР±СЂР°Р¶РµРЅРёРµ
+		Texture texture;//СЃС„РјР» С‚РµРєСЃС‚СѓСЂР°
+		Sprite sprite;//СЃС„РјР» СЃРїСЂР°Р№С‚
+		Map(String F, float X, float Y, float W, float H) {  //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё(С„РѕСЂРјР°Р»СЊРЅС‹РјРё) РґР»СЏ РєР»Р°СЃСЃР° Player. РџСЂРё СЃРѕР·РґР°РЅРёРё РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР° РјС‹ Р±СѓРґРµРј Р·Р°РґР°РІР°С‚СЊ РёРјСЏ С„Р°Р№Р»Р°, РєРѕРѕСЂРґРёРЅР°С‚Сѓ РҐ Рё РЈ, С€РёСЂРёРЅСѓ Рё РІС‹СЃРѕС‚Сѓ
+			File = F;//РёРјСЏ С„Р°Р№Р»Р°+СЂР°СЃС€РёСЂРµРЅРёРµ
+			w = W; h = H;//РІС‹СЃРѕС‚Р° Рё С€РёСЂРёРЅР°
+			image.loadFromFile("Images/" + File);//Р·Р°РїРёС…РёРІР°РµРј РІ image РЅР°С€Рµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РІРјРµСЃС‚Рѕ File РјС‹ РїРµСЂРµРґР°РґРёРј С‚Рѕ, С‡С‚Рѕ РїСЂРѕРїРёС€РµРј РїСЂРё СЃРѕР·РґР°РЅРёРё РѕР±СЉРµРєС‚Р°. Р’ РЅР°С€РµРј СЃР»СѓС‡Р°Рµ "hero.png" Рё РїРѕР»СѓС‡РёС‚СЃСЏ Р·Р°РїРёСЃСЊ РёРґРµРЅС‚РёС‡РЅР°СЏ 	image.loadFromFile("images/hero/png");
+			texture.loadFromImage(image);//Р·Р°РєРёРґС‹РІР°РµРј РЅР°С€Рµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РІ С‚РµРєСЃС‚СѓСЂСѓ
+			sprite.setTexture(texture);//Р·Р°Р»РёРІР°РµРј СЃРїСЂР°Р№С‚ С‚РµРєСЃС‚СѓСЂРѕР№
+			x = X; y = Y;//РєРѕРѕСЂРґРёРЅР°С‚Р° РїРѕСЏРІР»РµРЅРёСЏ СЃРїСЂР°Р№С‚Р°
 			sprite.setPosition(x, y);
 		}
 
 };
+
+class Box {
+public:
+	float x, y, w, h;
+	String File; 
+	Image image;
+	Texture texture;
+	Sprite sprite;
+	Box(String F, float W, float H) { 
+		File = F;
+		w = W; h = H;
+		image.loadFromFile("Images/" + File);
+		texture.loadFromImage(image);
+		sprite.setTexture(texture);
+		
+	}
+	FloatRect getRect() {
+		return FloatRect(x, y, w, h);
+	}
+
+	void rand_box(float a)
+	{
+		int k = rand() % 4 + 1;
+		switch (k) {
+		case 1: sprite.setPosition(45, a - 600); x = 45; y = a - 600; break;
+		case 2: sprite.setPosition(150, a - 600); x = 150; y = a - 600; break;
+		case 3: sprite.setPosition(280, a - 600); x = 280; y = a - 600; break;
+		case 4: sprite.setPosition(380, a - 600); x = 380; y = a - 600; break;
+		
+		}
+		
+	}
+};
 int main()
 {
-	RenderWindow window(sf::VideoMode(640, 720), "Need for Speed");
+	ContextSettings settings(0, 0, 8, 1, 1, 0);
+	RenderWindow window(sf::VideoMode(640, 720), "Need for Speed", 7U, settings);
+	window.setVerticalSyncEnabled(true);
 	Clock clock;
 	view.reset(sf::FloatRect(0, 700, 640, 720)); 
-	Player p("Car.pbm", 250, 10, 96.0, 96.0);
+	Player p("Car.jpg", 250, 10, 66.0, 130.0);
 	Map m1("Map.jpg", -70, -255, 640.0, 865.0);
 	Map	m2("Map.jpg", -70, 610, 640.0, 865.0);
-	int k, n = 340, s = 0;
+	Box b("Box.jpg", 69, 68);
+	
+	Font font;
+	font.loadFromFile("CyrilicOld.ttf");
+	Text text("", font, 50);
+	text.setColor(Color::Black);
+	text.setStyle(Text::Bold);
+
+	int k,num = 1, n = 340, s = 0,t = 1;
+	float box_time = 0;
 	while (window.isOpen())
 	{
 		float time = clock.getElapsedTime().asMicroseconds();
 		clock.restart();
-		time = time / 800;
+		time = time / 1000;
 
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -91,33 +140,35 @@ int main()
 		k = 0;
 		if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
 			p.dir = 1; p.speed_g = 0.1;
-			p.update(time);//dir =1 - направление вверх, speed =0.1 - скорость движения. Заметьте - время мы уже здесь ни на что не умножаем и нигде не используем каждый раз
+			p.update(time);
 
 		}
 
 		if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
-			p.dir = 0; p.speed_g = 0.1;//направление вправо, см выше
+			p.dir = 0; p.speed_g = 0.1;
 			p.update(time);
 		}
 
 		if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
-			p.dir = 3; k = 1; //p.speed_v = 0.1;//направление вниз, см выше
+			p.dir = 3; k = 1; 
 			p.update(time);
-			getplayercoordinateforview(250, p.getplayercoordinateY());
+			
 		}
 
-		if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) { //если нажата клавиша стрелка влево или англ буква А
-			p.dir = 2; k = 1; //p.speed_v = 0.1;//направление вверх, см выше
+		if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
+			p.dir = 2; k = 1; 
 			p.update(time);
-			getplayercoordinateforview(250, p.getplayercoordinateY());
+		
 		}
 		if (k == 0)
 		{
 			p.dir = 4;
 			p.update(time);
-			getplayercoordinateforview(250, p.getplayercoordinateY());
+			
 		}
-		// Алгоритм отрисовки карты
+		getplayercoordinateforview(250, p.getplayercoordinateY());
+
+		// РђР»РіРѕСЂРёС‚Рј РѕС‚СЂРёСЃРѕРІРєРё РєР°СЂС‚С‹
 		if (p.getplayercoordinateY() <= n)
 			if (s == 1)
 			{
@@ -133,12 +184,29 @@ int main()
 				s = 1;
 				n -= 865;
 			}
-		printf("%f\n", p.dy);
+		// РђР»РіРѕСЂРёС‚Рј РѕС‚СЂРёСЃРѕРІРєРё box
+		if (p.getplayercoordinateY() / 1000 <= -num)
+			{
+				b.rand_box(p.getplayercoordinateY());
+				num++;
+			}
+		if (b.getRect().intersects(p.getRect()))
+		{
+			p.dx = 0;
+			p.dy = 0;
+			text.setString("GAME OVER");
+
+			text.setPosition(view.getCenter().x - 100, view.getCenter().y);
+		}
+
+	
 		window.clear();
+		window.setView(view);
 		window.draw(m1.sprite);
 		window.draw(m2.sprite);
 		window.draw(p.sprite);
-		window.setView(view);
+		window.draw(b.sprite);
+		window.draw(text);
 		window.display();
 	}
 
