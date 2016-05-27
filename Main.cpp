@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Class.h"
+#include "Game.h"
 using namespace sf;
 int main()
 {
