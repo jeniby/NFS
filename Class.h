@@ -3,93 +3,13 @@
 #include <SFML\Window.hpp>
 #include <string>
 class Player { // класс Игрока
-private:
-	float x, y;
 public:
-	float  w, h, dx = 0.0, dy = 0.0, speed_g = 0.0, speed_v = 0.0021, n;//координаты игрока х и у, высота ширина, ускорение (по х и по у), сама скорость
-	int dir = 0, PlayerScore = 0, k = 0; //направление (direction) движения и
-	bool life = true;
-	String File; //файл с расширением
-	Image image;//сфмл изображение
-	Texture texture;//сфмл текстура
-	Sprite sprite;//сфмл спрайт
 
-	Player(String F, float X, float Y, float W, float H) {  //Конструктор с параметрами(формальными) для класса Player. При создании объекта класса мы будем задавать имя файла, координату Х и У, ширину и высоту
-		File = F;//имя файла+расширение
-		w = W; h = H;//высота и ширина
-		image.loadFromFile("Images/" + File);//запихиваем в image наше изображение вместо File мы передадим то, что пропишем при создании объекта. В нашем случае "hero.png" и получится запись идентичная 	image.loadFromFile("images/hero/png");
-		image.createMaskFromColor(Color(255, 0, 0));
-		texture.loadFromImage(image);//закидываем наше изображение в текстуру
-		sprite.setTexture(texture);//заливаем спрайт текстурой
-		x = X; y = Y;//координата появления спрайта
-		sprite.setPosition(x, y);
-
-	}
-
-
-	FloatRect getRect() {
-		return FloatRect(x + 5, y + 5, w - 5, h - 5);
-	}
-
+	Player(String F, float X, float Y, float W, float H)  //Конструктор с параметрами(формальными) для класса Player. При создании объекта класса мы будем задавать имя файла, координату Х и У, ширину и высоту
+	FloatRect getRect() 
 	void update(float time) //функция "оживления" объекта класса. update - обновление. принимает в себя время SFML , вследствие чего работает бесконечно, давая персонажу движение.
-	{
-		switch (dir)//реализуем поведение в зависимости от направления. (каждая цифра соответствует направлению)
-		{
-		case 0:
-			dx = -5 * speed_g*dy;
-			x += dx*time;
-			if (x > 405)
-				x -= dx*time;
-			break;
-		case 1:
-			dx = 5 * speed_g*dy;
-			x += dx*time;
-			if (x < 20)
-				x -= dx*time;
-			break;
-		case 2:
-			dx = 0;
-			if (dy < -0.001)
-				dy += 5 * speed_v;
-			else
-				dy = 0;
-			y += dy*time;
-			n = 1;
-			break;
-		case 3:
-			dx = 0;
-			if (dy * 170 > -100)
-				dy += -speed_v;
-			y += dy*time;
-
-			n = 1;
-			break;
-		case 4:
-			if (dy <= -0.0001)
-				n = 0.9969;
-			else
-				dy = 0;
-			dy = n*dy;
-			dx = 0;
-			y += dy*time;
-			break;
-		}
-		k++;
-		k += (dy * -170) / 10;
-		if (k > 60)
-		{
-			PlayerScore++;
-			k = 0;
-		}
-		sprite.setPosition(x, y); //выводим спрайт в позицию x y . бесконечно выводим в этой функции, иначе бы наш спрайт стоял на месте.
-
-	}
-	float getplayercoordinateX() {	//этим методом будем забирать координату Х	
-		return x;
-	}
-	float getplayercoordinateY() {	//этим методом будем забирать координату Y 	
-		return y;
-	}
+	float getplayercoordinateX() 	//этим методом будем забирать координату Х	
+	float getplayercoordinateY() 	//этим методом будем забирать координату Y 	
 };
 class Map {
 public:
