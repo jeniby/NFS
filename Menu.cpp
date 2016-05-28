@@ -1,9 +1,5 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <stdlib.h>
-#include <sstream>
+#include 'Menu.h'
 int sum(FILE * file);
-using namespace sf;
 bool About(RenderWindow & window)
 {
 	Texture About,Bk,Bkr;
