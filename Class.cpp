@@ -1,4 +1,4 @@
-#include 'Class.h'
+#include "Class.h"
 class Player { // класс Игрока
 private:
 	float x, y;
