@@ -1,13 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <SFML/Graphics.hpp>
-#include <SFML\System.hpp> 
-#include <SFML\Window.hpp>
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <stdio.h>
-#include <stdlib.h>
-using namespace sf;
+#include "Game.h"
 String music()
 {
 	srand(time(NULL));
