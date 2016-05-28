@@ -3,13 +3,13 @@
 #include <SFML\System.hpp> 
 #include <SFML\Window.hpp>
 #include <iostream>
-#include "View.h"
-#include "Menu.h"
-#include <string>
-#include <sstream>
-#include "File.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
+#include <sstream>
+#include "View.h"
+#include "Menu.h"
+#include "File.h"
 #include "Class.h"
 #include "Game.h"
 using namespace sf;
