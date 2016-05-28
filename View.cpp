@@ -1,5 +1,4 @@
-#include <SFML/Graphics.hpp>
-using namespace sf;
+#include 'View.h'
 
 sf::View view;//объявили sfml объект "вид", который и является камерой
 
