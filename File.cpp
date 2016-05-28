@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
+#include 'File.h'
 int sum(FILE * file)
 {
 	int c, x = 0, s = 0, k = 1, n;
