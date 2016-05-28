@@ -1,7 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <SFML\System.hpp> 
-#include <SFML\Window.hpp>
-#include <string>
+#include 'Class.h'
 class Player { // класс Игрока
 private:
 	float x, y;
