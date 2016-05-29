@@ -2,6 +2,8 @@
 #include <SFML\System.hpp> 
 #include <SFML\Window.hpp>
 #include <string>
+#ifndef CLASS_H    // если имя  CLASS_H ещё не определено
+#define  CLASS_H   // определить имя  CLASS_H
 class Player { // класс Игрока
 public:
 
@@ -44,3 +46,4 @@ public:
 	FloatRect getRect(); //возвращает квадрат спрайта ботов
 	void rand_Racket(float a); //Рандомит координаты для ракет
 };
+#endif CLASS_H     // если  имя CLASS_H уже определено, повторно не определять
