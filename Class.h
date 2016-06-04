@@ -1,9 +1,10 @@
+#ifndef CLASS_H    // если имя  CLASS_H ещё не определено
+#define  CLASS_H   // определить имя  CLASS_H
 #include <SFML/Graphics.hpp>
 #include <SFML\System.hpp> 
 #include <SFML\Window.hpp>
 #include <string>
-#ifndef CLASS_H    // если имя  CLASS_H ещё не определено
-#define  CLASS_H   // определить имя  CLASS_H
+
 class Player { // класс Игрока
 public:
 
