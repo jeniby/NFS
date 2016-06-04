@@ -1,5 +1,4 @@
-#ifndef GAME_H    // если имя GAME_H ещё не определено
-#define  GAME_H   // определить имя  GAME_H
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <SFML/Graphics.hpp>
 #include <SFML\System.hpp> 
@@ -16,4 +15,3 @@ bool Escape(RenderWindow & window, int *z) //При нажатии клавиш�
 bool startGame(int* z,int * lvl); //ф-ция запускает игру lvl передает один из 3 уровней (ящики, встречка, попутка)
 void gameRunning(int *z,int *lvl) //ф-ция перезагружает игру , если это необходимо
 bool startGame(int *z,int*lvl) // сам игровой процесс
-#endif GAME_H   // если  имя GAME_H уже определено, повторно не определять
