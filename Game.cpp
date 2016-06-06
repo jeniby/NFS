@@ -13,7 +13,7 @@ bool StartGame(int *z,int*lvl)
 	RenderWindow window(sf::VideoMode(640, 720), "Need for Speed",7U,settings);
 	window.setVerticalSyncEnabled(true);
 	if (*z!= 1)
-		menu(window,lvl);//вызов меню
+		Menu(window,lvl);//вызов меню
 	*z = 0;
 	Clock clock,
 		gameTimeClock;
@@ -26,10 +26,10 @@ bool StartGame(int *z,int*lvl)
 	Map	m2("Map.jpg", -70, 610, 640.0, 865.0);
 	Box b("Box.jpg", 69, 68);
 	Racket racket("Racket.png", 66, 66);
-	Bot bot1("Car.png", 2000, 1000, 66.0, 130.0),
-		bot2("Car.png", 2000, 1000, 66.0, 130.0),
-		bot3("Car.png", 2000, 1000, 66.0, 130.0),
-		bot4("Car.png", 2000, 1000, 66.0, 130.0),
+	Bot Bot1("Car.png", 2000, 1000, 66.0, 130.0),
+		Bot2("Car.png", 2000, 1000, 66.0, 130.0),
+		Bot3("Car.png", 2000, 1000, 66.0, 130.0),
+		Bot4("Car.png", 2000, 1000, 66.0, 130.0),
 	    r("Racket1.png", 2000, 1000, 60.0, 110.0);
 	r.dy = 250.0/ 170.0;
 	Sounds bip("bip.wav");
@@ -39,13 +39,13 @@ bool StartGame(int *z,int*lvl)
 	Font font;
 	font.loadFromFile("nfs_font.ttf");
 	Text 
-		money("", font, 20),
-		speed("", font, 20),
-		ttime("", font, 30);
+		Money("", font, 20),
+		Speed("", font, 20),
+		Ttime("", font, 30);
 	
-	money.setStyle(Text::Bold);
-	speed.setStyle(Text::Bold);
-	ttime.setStyle(Text::Bold);
+	Money.setStyle(Text::Bold);
+	Speed.setStyle(Text::Bold);
+	Ttime.setStyle(Text::Bold);
 	p.texture.setSmooth(true);
 	RectangleShape rectangle(Vector2f(500, 100));
 	//обводочка
@@ -65,16 +65,16 @@ bool StartGame(int *z,int*lvl)
 	Circle2.setTexture(&Bg);
 	int k, num[4],
 		n = 340, s = 0,
-		t = 1, suma,
-		d, r_num = 0, b_num = 1, pusk = 0,
-		kn[4],check = 0;
+		t = 1, Suma,
+		d, RNum = 0, BNum = 1, Pusk = 0,
+		kn[4],Check = 0;
 	num[0] = 1;
 	num[1] = 1;
 	num[2] = 1;
 	num[3] = 1;
-	float box_time = 0, pr = 0.0;
-	float const_time;
-	long long sch = 20;
+	float BoxTime = 0, pr = 0.0;
+	float CostTime;
+	long long Sch = 20;
 	Music m;
 	m.openFromFile(music());
 	m.play();
@@ -96,14 +96,14 @@ bool StartGame(int *z,int*lvl)
 			}
 		}
 		k = 0;
-		sch++;
-		if ((Keyboard::isKeyPressed(Keyboard::Escape)) && (sch > 20))
+		Sch++;
+		if ((Keyboard::isKeyPressed(Keyboard::Escape)) && (Sch > 20))
 		{
 			if (Escape(window,z))
 			{
 				return true;
 			}
-			sch = 0;
+			Sch = 0;
 			
 		}
 		
@@ -111,43 +111,43 @@ bool StartGame(int *z,int*lvl)
 		{
 			if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A))))
 			{
-				p.dir = 1;
-				p.speed_g = 0.1;
-				p.update(time);
+				p.Dir = 1;
+				p.speedG = 0.1;
+				p.Update(time);
 
 			}
 
 			if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D))))
 			{
-				p.dir = 0; 
-				p.speed_g = 0.1;
-				p.update(time);
+				p.Dir = 0; 
+				p.SpeedG = 0.1;
+				p.Update(time);
 			}
 
 			if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) 
 			{
-				p.dir = 2;
+				p.Dir = 2;
 				k = 1;
-				p.update(time);
-				check = 1;
+				p.Update(time);
+				Check = 1;
 			}
 
 			if (((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) && check == 0)
 			{
 				p.dir = 3;
 				k = 1;
-				p.update(time);
+				p.Update(time);
 			}
-			check = 0;
+			Check = 0;
 			
 
 			if (k == 0)
 			{
-				p.dir = 4;
-				p.update(time);
+				p.Dir = 4;
+				p.Update(time);
 
 			}
-			getplayercoordinateforview(250, p.getplayercoordinateY());
+			GetPlayerCoordinateForView(250, p.GetPlayerCoordinateY());
 			//circli
 			Circle1.setPosition(view.getCenter().x - 570, view.getCenter().y - 600);
 			Circle2.setPosition(view.getCenter().x + 170, view.getCenter().y - 600);
@@ -159,59 +159,59 @@ bool StartGame(int *z,int*lvl)
 		//text money
 		std::ostringstream Score;
 		Score << p.PlayerScore;
-		money.setString("Money\n" + Score.str());
-		money.setPosition(view.getCenter().x - 300 , view.getCenter().y - 340);
+		Money.setString("Money\n" + Score.str());
+		Money.setPosition(view.getCenter().x - 300 , view.getCenter().y - 340);
 		//text speed
 		std::ostringstream Speed;
 		Speed <<(int) (-p.dy*170);
 		speed.setString("  Speed\n" + Speed.str()+" km /h");
 		speed.setPosition(view.getCenter().x + 200, view.getCenter().y - 340);
 		//text time
-		std::ostringstream Ttime;
-		Ttime << 90 - gameClock;
-		ttime.setString("       Time\n" + Ttime.str() + " seconds");
-		ttime.setPosition(view.getCenter().x - 105, view.getCenter().y - 360);
+		std::ostringstream TimeS;
+		TimeS << 90 - gameClock;
+		Ttime.setString("       Time\n" + TimeS.str() + " seconds");
+		Ttime.setPosition(view.getCenter().x - 105, view.getCenter().y - 360);
 		//bip
 		if (pusk == 0)
-			r.sprite.setPosition(p.getplayercoordinateX()+ 5, p.getplayercoordinateY()+ 10);
+			r.sprite.setPosition(p.GetPlayerCoordinateX()+ 5, p.GetPlayerCoordinateY()+ 10);
 		if ((Keyboard::isKeyPressed(Keyboard::Space)) && (racket.life == true))
 		{
-			pusk = 1;
+			Pusk = 1;
 			racket.life = false;
 			racket.sprite.setPosition(1000, 1000);
-			r.x = p.getplayercoordinateX() + 5;
-			r.y = p.getplayercoordinateY() + 10;
+			r.x = p.GetPlayerCoordinateX() + 5;
+			r.y = p.GetPlayerCoordinateY() + 10;
 		}
-		if (pusk == 1)
+		if (Pusk == 1)
 		{
 			r.Update(1);
-			if (r.getRect().intersects(bot1.getRect()))
+			if (r.getRect().intersects(Bot1.getRect()))
 			{
-				bot1.y = 1000;
+				Bot1.y = 1000;
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50;
-				pusk = 0;
+				Pusk = 0;
 			}
-			if (r.getRect().intersects(bot2.getRect()))
+			if (r.getRect().intersects(Bot2.getRect()))
 			{
-				bot2.y = 1000;
+				Bot2.y = 1000;
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50;
-				pusk = 0;
+				Pusk = 0;
 			}
-			if (r.getRect().intersects(bot3.getRect()))
+			if (r.getRect().intersects(Bot3.getRect()))
 			{
-				bot3.y = 1000;
+				Bot3.y = 1000;
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50;
-				pusk = 0;
+				Pusk = 0;
 			}
-			if (r.getRect().intersects(bot4.getRect()))
+			if (r.getRect().intersects(Bot4.getRect()))
 			{
-				bot4.y = 1000;
+				Bot4.y = 1000;
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50; 
-				pusk = 0;
+				Busk = 0;
 			}
 			if (r.getRect().intersects(b.getRect()))
 			{
@@ -219,11 +219,11 @@ bool StartGame(int *z,int*lvl)
 				b.sprite.setPosition(b.x,b.y);
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50;
-				pusk = 0;
+				Pusk = 0;
 			}
 		}
 		// Алгоритм отрисовки карты
-		if (p.getplayercoordinateY() <= n)
+		if (p.GetPlayerCoordinateY() <= n)
 			if (s == 1)
 			{
 				m1.sprite.setPosition(-70, m1.y - 2 * m1.h);
@@ -241,10 +241,10 @@ bool StartGame(int *z,int*lvl)
 		
 		// Алгоритм отрисовки ракет
 		if (!racket.life)
-			if (p.getplayercoordinateY() / 5000 <= -r_num)
+			if (p.GetPlayerCoordinateY() / 5000 <= -r_num)
 		{
-		racket.rand_Racket(p.getplayercoordinateY());
-		r_num++;
+		racket.rand_Racket(p.GetPlayerCoordinateY());
+		RNum++;
 		}
 		if (racket.getRect().intersects(p.getRect()))
 		{
@@ -255,84 +255,84 @@ bool StartGame(int *z,int*lvl)
 		//алгорит отрисовки ботов
 		if (*lvl == 1)
 		{
-			if ((p.getplayercoordinateY() / 3000 <= -num[0]))
+			if ((p.GetPlayerCoordinateY() / 3000 <= -num[0]))
 			{
-				if ((bot1.y > p.getplayercoordinateY() - 600) && (bot1.y < p.getplayercoordinateY() + 250))
+				if ((bot1.y > p.GetPlayerCoordinateY() - 600) && (bot1.y < p.GetPlayerCoordinateY() + 250))
 					num[0]++;
 				else
 				{
-					bot1.Rand_Bot(p.getplayercoordinateY(), 1);
-					bot1.Rand_Color();
+					bot1.RandbBot(p.GetPlayerCoordinateY(), 1);
+					bot1.RandColor();
 					num[0]++;
 					kn[0] = 1;
 				}
 			}
 			if (kn[0] == 1)
-				bot1.Update(1);
-			if (bot1.getRect().intersects(p.getRect()))
+				Bot1.Update(1);
+			if (Bot1.getRect().intersects(p.getRect()))
 			{
 				p.dx = 0;
 				p.dy = 0;
 				p.life = false;
 
 			}
-			if ((p.getplayercoordinateY() / 2000 <= -num[1]))
+			if ((p.GetPlayerCoordinateY() / 2000 <= -num[1]))
 			{
-				if ((bot2.y > p.getplayercoordinateY() - 600) && (bot2.y < p.getplayercoordinateY() + 250))
+				if ((Bot2.y > p.GetPlayerCoordinateY() - 600) && (Bot2.y < p.GetPlayerCoordinateY() + 250))
 					num[1]++;
 				else
 				{
-					bot2.Rand_Bot(p.getplayercoordinateY(), 2);
-					bot2.Rand_Color();
+					Bot2.RandBot(p.getplayercoordinateY(), 2);
+					Bot2.RandColor();
 					num[1]++;
 					kn[1] = 1;
 				}
 			}
 			if (kn[1] == 1)
-				bot2.Update(1);
-			if (bot2.getRect().intersects(p.getRect()))
+				Bot2.Update(1);
+			if (Bot2.getRect().intersects(p.getRect()))
 			{
 				p.dx = 0;
 				p.dy = 0;
 				p.life = false;
 
 			}
-			if ((p.getplayercoordinateY() / 2500 <= -num[2]))
+			if ((p.GetPlayerCoordinateY() / 2500 <= -num[2]))
 			{
-				if ((bot3.y > p.getplayercoordinateY() - 600) && (bot3.y < p.getplayercoordinateY() + 250))
+				if ((Bot3.y > p.GetPlayerCoordinateY() - 600) && (Bot3.y < p.GetPlayerCoordinateY() + 250))
 					num[2]++;
 				else
 				{
-					bot3.Rand_Bot(p.getplayercoordinateY(), 3);
-					bot3.Rand_Color();
+					Bot3.RandBot(p.GetPlayerCoordinateY(), 3);
+					Bot3.RandColor();
 					num[2]++;
 					kn[2] = 1;
 				}
 			}
 			if (kn[2] == 1)
-				bot3.Update(1);
-			if (bot3.getRect().intersects(p.getRect()))
+				Bot3.Update(1);
+			if (Bot3.getRect().intersects(p.getRect()))
 			{
 				p.dx = 0;
 				p.dy = 0;
 				p.life = false;
 
 			}
-			if ((p.getplayercoordinateY() / 4000 <= -num[3]))
+			if ((p.GetPlayerCoordinateY() / 4000 <= -num[3]))
 			{
-				if ((bot4.y > p.getplayercoordinateY() - 600) && (bot4.y < p.getplayercoordinateY() + 250))
+				if ((Bot4.y > p.GetPlayerCoordinateY() - 600) && (Bot4.y < p.GetPlayerCoordinateY() + 250))
 					num[3]++;
 				else
 				{
-					bot4.Rand_Bot(p.getplayercoordinateY(), 4);
-					bot4.Rand_Color();
+					Bot4.RandBot(p.GetPlayerCoordinateY(), 4);
+					Bot4.RandColor();
 					num[3]++;
 					kn[3] = 1;
 				}
 			}
 			if (kn[3] == 1)
-				bot4.Update(1);
-			if (bot4.getRect().intersects(p.getRect()))
+				Bot4.Update(1);
+			if (Bot4.getRect().intersects(p.getRect()))
 			{
 				p.dx = 0;
 				p.dy = 0;
@@ -342,84 +342,84 @@ bool StartGame(int *z,int*lvl)
 		}
 		if (*lvl == 2)
 		{
-			if ((p.getplayercoordinateY() / 3000 <= -num[0]))
+			if ((p.GetPlayerCoordinateY() / 3000 <= -num[0]))
 			{
-				if ((bot1.y > p.getplayercoordinateY() - 600) && (bot1.y < p.getplayercoordinateY() + 250))
+				if ((Bot1.y > p.GetPlayerCoordinateY() - 600) && (Bot1.y < p.GetPlayerCoordinateY() + 250))
 					num[0]++;
 				else
 				{
-					bot1.Rand_Bot(p.getplayercoordinateY(), 1);
-					bot1.Rand_Color();
+					Bot1.RandBot(p.GetPlayerCoordinateY(), 1);
+					Bot1.RandColor();
 					num[0]++;
 					kn[0] = 1;
 				}
 			}
 			if (kn[0] == 1)
-				bot1.Update(-1);
-			if (bot1.getRect().intersects(p.getRect()))
+				Bot1.Update(-1);
+			if (Bot1.getRect().intersects(p.getRect()))
 			{
 				p.dx = 0;
 				p.dy = 0;
 				p.life = false;
 
 			}
-			if ((p.getplayercoordinateY() / 2000 <= -num[1]))
+			if ((p.GetPlayerCoordinateY() / 2000 <= -num[1]))
 			{
-				if ((bot2.y > p.getplayercoordinateY() - 600) && (bot2.y < p.getplayercoordinateY() + 250))
+				if ((Bot2.y > p.GetPlayerCoordinateY() - 600) && (Bot2.y < p.GetPlayerCoordinateY() + 250))
 					num[1]++;
 				else
 				{
-					bot2.Rand_Bot(p.getplayercoordinateY(), 2);
-					bot2.Rand_Color();
+					Bot2.RandBot(p.GetPlayerCoordinateY(), 2);
+					Bot2.RandColor();
 					num[1]++;
 					kn[1] = 1;
 				}
 			}
 			if (kn[1] == 1)
-				bot2.Update(-1);
-			if (bot2.getRect().intersects(p.getRect()))
+				Bot2.Update(-1);
+			if (Bot2.getRect().intersects(p.getRect()))
 			{
 				p.dx = 0;
 				p.dy = 0;
 				p.life = false;
 
 			}
-			if ((p.getplayercoordinateY() / 2500 <= -num[2]))
+			if ((p.GetPlayerCoordinateY() / 2500 <= -num[2]))
 			{
-				if ((bot3.y > p.getplayercoordinateY() - 600) && (bot3.y < p.getplayercoordinateY() + 250))
+				if ((Bot3.y > p.GetPlayerCoordinateY() - 600) && (Bot3.y < p.GetPlayerCoordinateY() + 250))
 					num[2]++;
 				else
 				{
-					bot3.Rand_Bot(p.getplayercoordinateY(), 3);
-					bot3.Rand_Color();
+					Bot3.Rand_Bot(p.GetPlayerCoordinateY(), 3);
+					Bot3.Rand_Color();
 					num[2]++;
 					kn[2] = 1;
 				}
 			}
 			if (kn[2] == 1)
-				bot3.Update(1);
-			if (bot3.getRect().intersects(p.getRect()))
+				Bot3.Update(1);
+			if (Bot3.getRect().intersects(p.getRect()))
 			{
 				p.dx = 0;
 				p.dy = 0;
 				p.life = false;
 
 			}
-			if ((p.getplayercoordinateY() / 4000 <= -num[3]))
+			if ((p.GetPlayerCoordinateY() / 4000 <= -num[3]))
 			{
-				if ((bot4.y > p.getplayercoordinateY() - 600) && (bot4.y < p.getplayercoordinateY() + 250))
+				if ((Bot4.y > p.GetPlayerCoordinateY() - 600) && (Bot4.y < p.GetPlayerCoordinateY() + 250))
 					num[3]++;
 				else
 				{
-					bot4.Rand_Bot(p.getplayercoordinateY(), 4);
-					bot4.Rand_Color();
+					Bot4.RandBot(p.GetPlayerCoordinateY(), 4);
+					Bot4.RandColor();
 					num[3]++;
 					kn[3] = 1;
 				}
 			}
 			if (kn[3] == 1)
-				bot4.Update(1);
-			if (bot4.getRect().intersects(p.getRect()))
+				Bot4.Update(1);
+			if (Bot4.getRect().intersects(p.getRect()))
 			{
 				p.dx = 0;
 				p.dy = 0;
@@ -430,10 +430,10 @@ bool StartGame(int *z,int*lvl)
 		// Алгоритм отрисовки box
 		if (*lvl == 3)
 		{
-			if (p.getplayercoordinateY() / 1000 <= -b_num)
+			if (p.GetPlayerCoordinateY() / 1000 <= -b_num)
 			{
-				b.rand_box(p.getplayercoordinateY());
-				b_num++;
+				b.RandBox(p.GetPlayerCoordinateY());
+				BNum++;
 			}
 			if (b.getRect().intersects(p.getRect()))
 			{
@@ -455,18 +455,18 @@ bool StartGame(int *z,int*lvl)
 			window.draw(b.sprite);
 		if ((*lvl == 2) || (*lvl == 1))
 		{
-			window.draw(bot1.sprite);
-			window.draw(bot2.sprite);
-			window.draw(bot3.sprite);
-			window.draw(bot4.sprite);
+			window.draw(Bot1.sprite);
+			window.draw(Bot2.sprite);
+			window.draw(Bot3.sprite);
+			window.draw(Bot4.sprite);
 		}
 		window.draw(racket.sprite);
 		window.draw(rectangle);
 		window.draw(Circle1);
 		window.draw(Circle2);
-		window.draw(money);
-		window.draw(speed);
-		window.draw(ttime);
+		window.draw(Money);
+		window.draw(Speed);
+		window.draw(Ttime);
 		
 
 		window.display();
@@ -485,7 +485,7 @@ bool StartGame(int *z,int*lvl)
 			fclose(file);
 			
 			file = fopen("text/Money.txt", "w");
-			fprintf(file, "%d", suma);
+			fprintf(file, "%d", Suma);
 			fclose(file);
 			
 			if (Game_over(window,z,p.PlayerScore,p.PlayerScore*pr))
