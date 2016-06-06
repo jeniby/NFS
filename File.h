@@ -3,5 +3,5 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-int sum(FILE * file); //считывает файл и возвращает сумму цифр
+int Sum(FILE * file); //считывает файл и возвращает сумму цифр
 
