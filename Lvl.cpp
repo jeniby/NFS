@@ -1,5 +1,5 @@
 #include "Lvl.h"
-bool LVL(RenderWindow & window,int *lvl)
+bool Lvl(RenderWindow & window,int *lvl)
 {
 	// создаю текстуры
 	Texture LvlBg, Lvl1, lvl2,lvlR1,lvlR2,Money,Money2,Bk,BkR,Lvl3,lvlR3;
