@@ -22,45 +22,45 @@ void menu(RenderWindow & window, int * lvl)
 	menuTexture4.setSmooth(true);
 	menuTexture5.setSmooth(true);
 	//Создаем спрайты из наших текстур
-	Sprite menu1(menuTexture1), menu2(menuTexture2), menu3(menuTexture3),
-		menu4(menuTexture4), menu5(menuTexture5), menuBg(menuBackground), m(M);
+	Sprite Menu1(menuTexture1), Menu2(menuTexture2), Menu3(menuTexture3),
+		Menu4(menuTexture4), Menu5(menuTexture5), MenuBg(menuBackground), m(M);
 
-	menu1.setTextureRect(IntRect(205, 202, 230, 60));
-	menu2.setTextureRect(IntRect(205, 202, 230, 60));
-	menu3.setTextureRect(IntRect(205, 202, 230, 60));
-	menu4.setTextureRect(IntRect(205, 202, 230, 60));
-	menu5.setTextureRect(IntRect(205, 202, 230, 60));
-	bool isMenu = 1;
-	int menuNum = 0, suma;
+	Menu1.setTextureRect(IntRect(205, 202, 230, 60));
+	Menu2.setTextureRect(IntRect(205, 202, 230, 60));
+	Menu3.setTextureRect(IntRect(205, 202, 230, 60));
+	Menu4.setTextureRect(IntRect(205, 202, 230, 60));
+	Menu5.setTextureRect(IntRect(205, 202, 230, 60));
+	bool IsMenu = 1;
+	int MenuNum = 0, Suma;
 	//Размещаем на экране меню
-	menu1.setPosition(315, 180);
-	menu2.setPosition(315, 280);
-	menu3.setPosition(315, 380);
-	menu4.setPosition(315, 480);
-	menu5.setPosition(315, 580);
+	Menu1.setPosition(315, 180);
+	Menu2.setPosition(315, 280);
+	Menu3.setPosition(315, 380);
+	Menu4.setPosition(315, 480);
+	Menu5.setPosition(315, 580);
 	//позиция фона
-	menuBg.setPosition(0, 0);
+	MenuBg.setPosition(0, 0);
 	//Перемещения центра
-	menu1.setOrigin(115, 30);
-	menu2.setOrigin(115, 30);
-	menu3.setOrigin(115, 30);
-	menu4.setOrigin(115, 30);
-	menu5.setOrigin(115, 30);
+	Menu1.setOrigin(115, 30);
+	Menu2.setOrigin(115, 30);
+	Menu3.setOrigin(115, 30);
+	Menu4.setOrigin(115, 30);
+	Menu5.setOrigin(115, 30);
 	FILE *file;
 	file = fopen("text/Money.txt", "r");
-	suma = sum(file);
+	Suma = Sum(file);
 	fclose(file);
 	Font font;
 	font.loadFromFile("nfs_font.ttf");
 	Text text("", font, 43),
 
-		money("", font, 30);
-	money.setColor(Color(104, 183, 0));
-	money.setStyle(Text::Bold);
+		Money("", font, 30);
+	Money.setColor(Color(104, 183, 0));
+	Money.setStyle(Text::Bold);
 	std::ostringstream Moneystr;
-	Moneystr << (int)suma;
-	money.setString(Moneystr.str());
-	money.setPosition(30, 680);
+	Moneystr << (int)Suma;
+	Money.setString(Moneystr.str());
+	Money.setPosition(30, 680);
 	//
 	RectangleShape rectangle(Vector2f(175, 100));
 	rectangle.setOutlineThickness(3);
@@ -70,7 +70,7 @@ void menu(RenderWindow & window, int * lvl)
 	rectangle.setPosition(0, 680);
 	m.setPosition(5, 688);
 	//////////////////////////////МЕНЮ///////////////////
-	while (isMenu)
+	while (IsMenu)
 	{
 		Event event;
 		while (window.pollEvent(event))
@@ -78,79 +78,79 @@ void menu(RenderWindow & window, int * lvl)
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
-				isMenu = false;
+				IsMenu = false;
 			}
 		}
-		menuNum = 0;
+		MenuNum = 0;
 		//возвращаем обычный размер
-		menu1.setScale(1.f, 1.f);
-		menu2.setScale(1.f, 1.f);
-		menu3.setScale(1.f, 1.f);
-		menu4.setScale(1.f, 1.f);
-		menu5.setScale(1.f, 1.f);
+		Menu1.setScale(1.f, 1.f);
+		Menu2.setScale(1.f, 1.f);
+		Menu3.setScale(1.f, 1.f);
+		Menu4.setScale(1.f, 1.f);
+		Menu5.setScale(1.f, 1.f);
 		if (IntRect(200, 150, 230, 60).contains(Mouse::getPosition(window)))
 		{
-			menu1.setScale(1.05f, 1.05f);
+			Menu1.setScale(1.05f, 1.05f);
 			//click.play();
-			menuNum = 1;
+			MenuNum = 1;
 		}
 		if (IntRect(200, 250, 230, 60).contains(Mouse::getPosition(window)))
 		{
-			menu2.setScale(1.05f, 1.05f);
+			Menu2.setScale(1.05f, 1.05f);
 			//click.play();
-			menuNum = 2;
+			MenuNum = 2;
 		}
 		if (IntRect(200, 350, 230, 60).contains(Mouse::getPosition(window)))
 		{
-			menu3.setScale(1.05f, 1.05f);
+			Menu3.setScale(1.05f, 1.05f);
 			//click.play();
-			menuNum = 3;
+			MenuNum = 3;
 		}
 		if (IntRect(200, 450, 230, 60).contains(Mouse::getPosition(window)))
 		{
-			menu4.setScale(1.05f, 1.05f);
+			Menu4.setScale(1.05f, 1.05f);
 			//click.play();
-			menuNum = 4;
+			MenuNum = 4;
 		}
 		if (IntRect(200, 550, 230, 60).contains(Mouse::getPosition(window)))
 		{
-			menu5.setScale(1.05f, 1.05f);
+			Menu5.setScale(1.05f, 1.05f);
 			//click.play();
-			menuNum = 5;
+			MenuNum = 5;
 		}
 
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (menuNum == 1)
+			if (MenuNum == 1)
 			{
-				if (LVL(window, lvl))
+				if (Lvl(window, lvl))
 				{
-					isMenu = false;
+					IsMenu = false;
 					return;
 				}
 			}//если нажали первую кнопку, то выходим из меню 
-			if (menuNum == 4)
+			if (MenuNum == 4)
 				if (About(window))
 				{
-					isMenu = false;
+					IsMenu = false;
 					return;
 				}
-			if (menuNum == 5)
+			if (MenuNum == 5)
 			{
 				window.close();
-				isMenu = false;
+				IsMenu = false;
 			}
 
 		}
 
-			window.draw(menuBg);
-			window.draw(menu1);
-			window.draw(menu2);
-			window.draw(menu3);
-			window.draw(menu4);
-			window.draw(menu5);
+			window.draw(MenuBg);
+			window.draw(Menu1);
+			window.draw(Menu2);
+			window.draw(Menu3);
+			window.draw(Menu4);
+			window.draw(Menu5);
 			window.draw(rectangle);
-			window.draw(money);
+			window.draw(Money);
 			window.draw(m);
 
 			window.display();
