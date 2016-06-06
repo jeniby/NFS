@@ -5,10 +5,10 @@ bool About(RenderWindow & window)
 	About.loadFromFile("images/Menu/about.png");
 	Bk.loadFromFile("images/Menu/Bk.jpg");
 	BkRed.loadFromFile("images/Menu/Bkr.jpg");
-	Sprite about(About), SBk(Bk), SBkRed(BkRed);
+	Sprite SAbout(About), SBk(Bk), SBkRed(BkRed);
 	SBk.setPosition(0, 0);
 	SBkRed.setPosition(0, 0);
-	About.setPosition(0, 0);
+	SAbout.setPosition(0, 0);
 	int b, MenuNum;
 	bool IsMenu = 1;
 	while (IsMenu)
@@ -38,7 +38,7 @@ bool About(RenderWindow & window)
 			}
 		}
 
-		window.draw(About);
+		window.draw(SAbout);
 		if (b == 0)
 		{
 			window.draw(SBk);
