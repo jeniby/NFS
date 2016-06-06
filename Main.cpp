@@ -12,7 +12,8 @@
 #include "File.h"
 #include "Class.h"
 #include "Game.h"
-using namespace sf;
+#include "Music.h"
+using namespace sf; // пространство имен SFML
 int main()
 {
 	int z = 0,lvl = 0;
