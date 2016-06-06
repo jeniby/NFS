@@ -3,8 +3,8 @@ class Player { // класс Игрока
 private:
 	float x, y;
 public:
-	float  w, h, dx = 0.0, dy = 0.0, speed_g = 0.0, speed_v = 0.0021, n;//координаты игрока х и у, высота ширина, ускорение (по х и по у), сама скорость
-	int dir = 0, PlayerScore = 0, k = 0; //направление (direction) движения и
+	float  w, h, dx = 0.0, dy = 0.0, SpeedG = 0.0, SpeedV = 0.0021, n;//координаты игрока х и у, высота ширина, ускорение (по х и по у), сама скорость
+	int Dir = 0, PlayerScore = 0, k = 0; //направление (direction) движения и
 	bool life = true;
 	String File; //файл с расширением
 	Image image;//сфмл изображение
@@ -30,7 +30,7 @@ public:
 
 	void update(float time) //функция "оживления" объекта класса. update - обновление. принимает в себя время SFML , вследствие чего работает бесконечно, давая персонажу движение.
 	{
-		switch (dir)//реализуем поведение в зависимости от направления. (каждая цифра соответствует направлению)
+		switch (Dir)//реализуем поведение в зависимости от направления. (каждая цифра соответствует направлению)
 		{
 		case 0:
 			dx = -5 * speed_g*dy;
@@ -81,10 +81,10 @@ public:
 		sprite.setPosition(x, y); //выводим спрайт в позицию x y . бесконечно выводим в этой функции, иначе бы наш спрайт стоял на месте.
 
 	}
-	float getplayercoordinateX() {	//этим методом будем забирать координату Х	
+	float GetPlayerCoordinateX() {	//этим методом будем забирать координату Х	
 		return x;
 	}
-	float getplayercoordinateY() {	//этим методом будем забирать координату Y 	
+	float GetPlayerCoordinateY() {	//этим методом будем забирать координату Y 	
 		return y;
 	}
 };
@@ -128,7 +128,7 @@ public:
 		return FloatRect(x, y, w, h);
 	}
 
-	void rand_box(float a)
+	void RandBox(float a)
 	{
 		srand(time(NULL));
 		int k = rand() % 4 + 1;
@@ -185,7 +185,7 @@ public:
 		sprite.setPosition(x, y);
 		dy = ((float)(rand() % 20 + 40)) / 170;
 	}
-	void Rand_Bot(float a, int k)
+	void RandBot(float a, int k)
 	{
 
 		switch (k) {
@@ -216,7 +216,7 @@ public:
 		y -= d*dy * 32;
 		sprite.setPosition(x, y);
 	}
-	void Rand_Color()
+	void RandColor()
 	{
 		srand(time(NULL));
 		int k = rand() % 4 + 1;
@@ -261,7 +261,7 @@ public:
 		return FloatRect(x, y, w, h);
 	}
 
-	void rand_Racket(float a)
+	void RandRacket(float a)
 	{
 		int k = rand() % 4 + 1;
 		switch (k) {
