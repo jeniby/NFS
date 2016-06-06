@@ -14,11 +14,12 @@
 #include "Game.h"
 #include "Music.h"
 #include "GameOver.h"
+#include "Escape.h"
 using namespace sf; // пространство имен SFML
 int main()
 {
 	int z = 0,lvl = 0;
-	gameRunning(&z,&lvl);
+	GameRunning(&z,&lvl);
 
 	return 0;
 }
