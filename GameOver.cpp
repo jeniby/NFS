@@ -1,5 +1,5 @@
 #include "GameOver.h"
-bool Game_over(RenderWindow & window,int *z,int m, int pr)
+bool GameOver(RenderWindow & window,int *z,int m, int pr)
 {
 	
 	Font font;
