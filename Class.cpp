@@ -33,13 +33,13 @@ public:
 		switch (Dir)//реализуем поведение в зависимости от направления. (каждая цифра соответствует направлению)
 		{
 		case 0:
-			dx = -5 * speed_g*dy;
+			dx = -5 * SpeedG*dy;
 			x += dx*time;
 			if (x > 405)
 				x -= dx*time;
 			break;
 		case 1:
-			dx = 5 * speed_g*dy;
+			dx = 5 * SpeedG*dy;
 			x += dx*time;
 			if (x < 20)
 				x -= dx*time;
@@ -47,7 +47,7 @@ public:
 		case 2:
 			dx = 0;
 			if (dy < -0.001)
-				dy += 5 * speed_v;
+				dy += 5 * SpeedV;
 			else
 				dy = 0;
 			y += dy*time;
@@ -56,7 +56,7 @@ public:
 		case 3:
 			dx = 0;
 			if (dy * 170 > -100)
-				dy += -speed_v;
+				dy += -SpeedV;
 			y += dy*time;
 
 			n = 1;
