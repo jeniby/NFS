@@ -13,6 +13,7 @@
 #include "Class.h"
 #include "Game.h"
 #include "Music.h"
+#include "GameOver"
 using namespace sf; // пространство имен SFML
 int main()
 {
