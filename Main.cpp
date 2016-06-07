@@ -1,20 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <SFML/Graphics.hpp>
-#include <SFML\System.hpp> 
-#include <SFML\Window.hpp>
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string>
-#include <sstream>
-#include "View.h"
-#include "Menu.h"
-#include "File.h"
-#include "Class.h"
 #include "Game.h"
-#include "Music.h"
-#include "GameOver.h"
-#include "Escape.h"
 using namespace sf; // пространство имен SFML
 int main()
 {
