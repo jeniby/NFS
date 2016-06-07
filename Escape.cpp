@@ -16,8 +16,8 @@ bool Escape(RenderWindow & window, int *z)
 	M2.setTextureRect(IntRect(205, 202, 230, 60));
 	M3.setTextureRect(IntRect(205, 202, 230, 60));
 	Menu1.setSmooth(true);
-	bool IsMenu = 1;
-	int MenuNum = 0;
+	bool isMenu = 1;
+	int menuNum = 0;
 	//перемещаем центр тяжести:)
 	M1.setOrigin(115, 30);
 	M2.setOrigin(115, 30);
@@ -54,27 +54,27 @@ bool Escape(RenderWindow & window, int *z)
 			if (IntRect(200, 330, 230, 60).contains(Mouse::getPosition(window)))
 		{
 			M1.setScale(1.05f, 1.05f);
-			MenuNum = 1;
+			menuNum = 1;
 		}
 
 		if (IntRect( 200,  430, 230, 60).contains(Mouse::getPosition(window)))
 		{
 			M2.setScale(1.05f, 1.05f);
-			MenuNum = 2;
+			menuNum = 2;
 		}
 
 		if (IntRect(200, 230, 230, 60).contains(Mouse::getPosition(window)))
 		{
 			M3.setScale(1.05f, 1.05f);
-			MenuNum = 3;
+			menuNum = 3;
 		}
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (MenuNum == 3)
+			if (menuNum == 3)
 				return false;//если нажали первую кнопку, то выходим из меню 
-			if (MenuNum == 2)
+			if (menuNum == 2)
 				return true;
-			if (MenuNum == 1)
+			if (menuNum == 1)
 			{
 				*z = 1;
 				return true;
