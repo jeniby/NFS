@@ -42,8 +42,8 @@ bool Lvl(RenderWindow & window,int *lvl)
 	m2.setPosition(390, 530);
 	m2.setColor(Color(104, 183, 0));
 	bool IsMenu = 1;
-	int MenuNum,n =0, k = 0, l = 0,b = 0;
-	while (IsMenu)
+	int menuNum,n =0, k = 0, l = 0,b = 0;
+	while (isMenu)
 	{
 		Event event;
 		while (window.pollEvent(event))
@@ -54,44 +54,44 @@ bool Lvl(RenderWindow & window,int *lvl)
 				return false;
 			}
 		}
-		MenuNum = 0;
+		menuNum = 0;
 		n = 0;
 		k = 0;
 		l = 0;
 		b = 0;
 		if (IntRect(130, 400, 139, 135).contains(Mouse::getPosition(window)))
 		{
-			MenuNum = 1;
+			menuNum = 1;
 			n = 1;
 		}
 		if (IntRect(370, 400, 139, 135).contains(Mouse::getPosition(window)))
 		{
-			MenuNum = 2;
+			menuNum = 2;
 			k = 1;
 		}
 		if (IntRect(0, 0, 87, 50).contains(Mouse::getPosition(window)))
 		{
-			MenuNum = 3;
+			menuNum = 3;
 			l = 1;
 		}
 		if (IntRect(250,200, 139, 135).contains(Mouse::getPosition(window)))
 		{
-			MenuNum = 4;
+			menuNum = 4;
 			b = 1;
 		}
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (MenuNum == 1)
+			if (menuNum == 1)
 			{
 				*lvl = 1;
 				return true;
 			}//если нажали первую кнопку, то выходим из меню 
-			if (MenuNum == 2)
+			if (menuNum == 2)
 			{
 				*lvl = 2;
 				return true;
 			}
-			if (MenuNum == 3)
+			if (menuNum == 3)
 			{
 				return false;
 			}
