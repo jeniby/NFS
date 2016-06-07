@@ -65,9 +65,9 @@ bool StartGame(int *z,int*lvl)
 	Circle2.setTexture(&Bg);
 	int k, num[4],
 		n = 340, s = 0,
-		t = 1, Suma,
-		d, RNum = 0, BNum = 1, Pusk = 0,
-		kn[4],Check = 0;
+		t = 1, suma,
+		d, RNum = 0, BNum = 1, pusk = 0,
+		kn[4],check = 0;
 	num[0] = 1;
 	num[1] = 1;
 	num[2] = 1;
@@ -96,14 +96,14 @@ bool StartGame(int *z,int*lvl)
 			}
 		}
 		k = 0;
-		Sch++;
-		if ((Keyboard::isKeyPressed(Keyboard::Escape)) && (Sch > 20))
+		sch++;
+		if ((Keyboard::isKeyPressed(Keyboard::Escape)) && (sch > 20))
 		{
 			if (Escape(window,z))
 			{
 				return true;
 			}
-			Sch = 0;
+			sch = 0;
 			
 		}
 		
@@ -112,7 +112,7 @@ bool StartGame(int *z,int*lvl)
 			if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A))))
 			{
 				p.Dir = 1;
-				p.speedG = 0.1;
+				p.SpeedG = 0.1;
 				p.Update(time);
 
 			}
@@ -129,16 +129,16 @@ bool StartGame(int *z,int*lvl)
 				p.Dir = 2;
 				k = 1;
 				p.Update(time);
-				Check = 1;
+				check = 1;
 			}
 
 			if (((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) && check == 0)
 			{
-				p.dir = 3;
+				p.Dir = 3;
 				k = 1;
 				p.Update(time);
 			}
-			Check = 0;
+			check = 0;
 			
 
 			if (k == 0)
@@ -176,13 +176,13 @@ bool StartGame(int *z,int*lvl)
 			r.sprite.setPosition(p.GetPlayerCoordinateX()+ 5, p.GetPlayerCoordinateY()+ 10);
 		if ((Keyboard::isKeyPressed(Keyboard::Space)) && (racket.life == true))
 		{
-			Pusk = 1;
+			pusk = 1;
 			racket.life = false;
 			racket.sprite.setPosition(1000, 1000);
 			r.x = p.GetPlayerCoordinateX() + 5;
 			r.y = p.GetPlayerCoordinateY() + 10;
 		}
-		if (Pusk == 1)
+		if (pusk == 1)
 		{
 			r.Update(1);
 			if (r.getRect().intersects(Bot1.getRect()))
@@ -190,28 +190,28 @@ bool StartGame(int *z,int*lvl)
 				Bot1.y = 1000;
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50;
-				Pusk = 0;
+				pusk = 0;
 			}
 			if (r.getRect().intersects(Bot2.getRect()))
 			{
 				Bot2.y = 1000;
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50;
-				Pusk = 0;
+				pusk = 0;
 			}
 			if (r.getRect().intersects(Bot3.getRect()))
 			{
 				Bot3.y = 1000;
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50;
-				Pusk = 0;
+				pusk = 0;
 			}
 			if (r.getRect().intersects(Bot4.getRect()))
 			{
 				Bot4.y = 1000;
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50; 
-				Busk = 0;
+				pusk = 0;
 			}
 			if (r.getRect().intersects(b.getRect()))
 			{
@@ -219,7 +219,7 @@ bool StartGame(int *z,int*lvl)
 				b.sprite.setPosition(b.x,b.y);
 				r.sprite.setPosition(1000, 1000);
 				p.PlayerScore += 50;
-				Pusk = 0;
+				pusk = 0;
 			}
 		}
 		// Алгоритм отрисовки карты
