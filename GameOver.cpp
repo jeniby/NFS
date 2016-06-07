@@ -23,8 +23,8 @@ bool GameOver(RenderWindow & window,int *z,int m, int pr)
 	M1.setTextureRect(IntRect(205, 202, 230, 60));
 	M2.setTextureRect(IntRect(205, 202, 230, 60));
 	SMoney4.setPosition(view.getCenter().x - 135, view.getCenter().y - 80);
-	bool IsMenu = 1;
-	int MenuNum = 0;
+	bool isMenu = 1;
+	int menuNum = 0;
 	M1.setOrigin(115, 30);
 	M2.setOrigin(115, 30);
 	//фон
@@ -40,7 +40,7 @@ bool GameOver(RenderWindow & window,int *z,int m, int pr)
 	Money.setString(Money1.str() +" + " + Money2.str() + " = " + Money3.str());
 	Money.setPosition(view.getCenter().x - 110, view.getCenter().y - 90);
 
-	while (IsMenu)
+	while (isMenu)
 	{
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -59,30 +59,30 @@ bool GameOver(RenderWindow & window,int *z,int m, int pr)
 		//фон
 
 		rectangle.setPosition(view.getCenter().x - 150, view.getCenter().y - 150);
-		MenuNum = 0;
+		menuNum = 0;
 		M1.setScale(1.f, 1.f);
 		M2.setScale(1.f, 1.f);
 		if (IntRect(200, 330, 230, 60).contains(Mouse::getPosition(window)))
 		{
 			M1.setScale(1.05f, 1.05f);
 
-			MenuNum = 1;
+			menuNum = 1;
 		}
 
 		if (IntRect(200, 430, 230, 60).contains(Mouse::getPosition(window)))
 		{
 			M2.setScale(1.05f, 1.05f);
-			MenuNum = 2;
+			menuNum = 2;
 		}
 
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (MenuNum == 1)
+			if (menuNum == 1)
 			{
 				*z = 1;
 				return true;//если нажали первую кнопку, то выходим из меню 
 			}
-			if (MenuNum == 2)
+			if (menuNum == 2)
 				return true;
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
