@@ -9,9 +9,9 @@ bool About(RenderWindow & window)
 	SBk.setPosition(0, 0);
 	SBkRed.setPosition(0, 0);
 	SAbout.setPosition(0, 0);
-	int Num, MenuNum;
-	bool IsMenu = 1;
-	while (IsMenu)
+	int num, menuNum;
+	bool isMenu = 1;
+	while (isMenu)
 	{
 		Event event;
 		while (window.pollEvent(event))
@@ -22,24 +22,24 @@ bool About(RenderWindow & window)
 				return false;
 			}
 		}
-		MenuNum = 0;
-		Num = 0;
+		menuNum = 0;
+		num = 0;
 		if (IntRect(0, 0, 87, 50).contains(Mouse::getPosition(window)))
 		{
-			Num = 1;
-			MenuNum = 1;
+			num = 1;
+			menuNum = 1;
 		}
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
 			
-			if (MenuNum == 1)
+			if (menuNum == 1)
 			{
 				return false;
 			}
 		}
 
 		window.draw(SAbout);
-		if (Num == 0)
+		if (num == 0)
 		{
 			window.draw(SBk);
 
