@@ -70,7 +70,7 @@ void menu(RenderWindow & window, int * lvl)
 	rectangle.setPosition(0, 680);
 	m.setPosition(5, 688);
 	//////////////////////////////МЕНЮ///////////////////
-	while (IsMenu)
+	while (isMenu)
 	{
 		Event event;
 		while (window.pollEvent(event))
@@ -78,10 +78,10 @@ void menu(RenderWindow & window, int * lvl)
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
-				IsMenu = false;
+				isMenu = false;
 			}
 		}
-		MenuNum = 0;
+		menuNum = 0;
 		//возвращаем обычный размер
 		Menu1.setScale(1.f, 1.f);
 		Menu2.setScale(1.f, 1.f);
@@ -92,53 +92,53 @@ void menu(RenderWindow & window, int * lvl)
 		{
 			Menu1.setScale(1.05f, 1.05f);
 			//click.play();
-			MenuNum = 1;
+			menuNum = 1;
 		}
 		if (IntRect(200, 250, 230, 60).contains(Mouse::getPosition(window)))
 		{
 			Menu2.setScale(1.05f, 1.05f);
 			//click.play();
-			MenuNum = 2;
+			menuNum = 2;
 		}
 		if (IntRect(200, 350, 230, 60).contains(Mouse::getPosition(window)))
 		{
 			Menu3.setScale(1.05f, 1.05f);
 			//click.play();
-			MenuNum = 3;
+			menuNum = 3;
 		}
 		if (IntRect(200, 450, 230, 60).contains(Mouse::getPosition(window)))
 		{
 			Menu4.setScale(1.05f, 1.05f);
 			//click.play();
-			MenuNum = 4;
+			menuNum = 4;
 		}
 		if (IntRect(200, 550, 230, 60).contains(Mouse::getPosition(window)))
 		{
 			Menu5.setScale(1.05f, 1.05f);
 			//click.play();
-			MenuNum = 5;
+			menuNum = 5;
 		}
 
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (MenuNum == 1)
+			if (menuNum == 1)
 			{
 				if (Lvl(window, lvl))
 				{
-					IsMenu = false;
+					isMenu = false;
 					return;
 				}
 			}//если нажали первую кнопку, то выходим из меню 
-			if (MenuNum == 4)
+			if (menuNum == 4)
 				if (About(window))
 				{
-					IsMenu = false;
+					isMenu = false;
 					return;
 				}
-			if (MenuNum == 5)
+			if (menuNum == 5)
 			{
 				window.close();
-				IsMenu = false;
+				isMenu = false;
 			}
 
 		}
