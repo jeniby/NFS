@@ -1,4 +1,4 @@
-#include "Menu.h"
+#include "../Headers/Menu.h"
 void menu(RenderWindow & window, int * lvl)
 {
 	SoundBuffer clickB;//создаём буфер для звука
