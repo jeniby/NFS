@@ -1,4 +1,4 @@
-#include "GameOver.h"
+#include "../Headers/GameOver.h"
 bool GameOver(RenderWindow & window,int *z,int m, int pr)
 {
 	
