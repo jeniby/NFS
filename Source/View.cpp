@@ -1,4 +1,4 @@
-#include "View.h'""
+#include "../Headers/View.h"
 
 sf::View view;//объявили sfml объект "вид", который и является камерой
 
