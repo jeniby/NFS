@@ -1,4 +1,4 @@
-#include "Lvl.h"
+#include "../Headers/Lvl.h"
 bool Lvl(RenderWindow & window,int *lvl)
 {
 	// создаю текстуры
