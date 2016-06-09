@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "../Headers/Game.h"
 bool StartGame(int* z,int * lvl);
 void GameRunning(int *z,int *lvl) //ф-ция перезагружает игру , если это необходимо
 {
