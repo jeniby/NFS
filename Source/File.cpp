@@ -1,4 +1,4 @@
-#include "File.h"
+#include "../Headers/File.h"
 int Sum(FILE * file)
 {
 	int c, x = 0, s = 0, k = 1, n;
