@@ -1,4 +1,4 @@
-#include "Music.h"
+#include "../Headers/Music.h"
 String music()
 {
 	srand(time(NULL));
