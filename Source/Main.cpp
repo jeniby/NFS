@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "../Headers/Game.h"
 using namespace sf; // пространство имен SFML
 int main()
 {
