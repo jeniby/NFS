@@ -1,4 +1,4 @@
-#include "Escape.h"
+#include "../Headers/Escape.h"
 bool Escape(RenderWindow & window, int *z)
 {
 	//создаем тексуры для кнопочек
